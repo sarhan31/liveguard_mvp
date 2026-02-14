@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+
+.bg-aurora {
+  position: fixed;
+  inset: -20%;
+  background: conic-gradient(from 180deg at 50% 50%, rgba(0,255,163,0.12), rgba(255,80,120,0.1), rgba(80,160,255,0.08), rgba(0,255,163,0.12));
+  filter: blur(80px);
+  pointer-events: none;
+}

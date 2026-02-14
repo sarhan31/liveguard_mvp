@@ -1,0 +1,29 @@
+# Node / Frontend
+node_modules/
+dist/
+.vite/
+.cache/
+*.log
+.env
+.env.local
+.env.*.local
+
+# Python / Backend
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# OS / Editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Build artifacts
+build/
+coverage/
+
