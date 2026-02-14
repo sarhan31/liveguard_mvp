@@ -1,6 +1,20 @@
 import { useEffect, useRef, useState } from 'react'
 
-const WS_URL = 'ws://localhost:8000/ws/audio'
+const envWs = (import.meta as any).env?.VITE_WS_URL as string | undefined
+function inferWsUrl(): string {
+  if (envWs && typeof envWs === 'string' && envWs.trim()) return envWs
+  if (typeof window !== 'undefined') {
+    const proto = window.location.protocol === 'https:' ? 'wss' : 'ws'
+    // Try to hit same host in production; fallback to localhost in dev
+    const hostBased = `${proto}://${window.location.host}/ws/audio`
+    if ((import.meta as any).env?.DEV) {
+      return 'ws://localhost:8000/ws/audio'
+    }
+    return hostBased
+  }
+  return 'ws://localhost:8000/ws/audio'
+}
+const WS_URL = inferWsUrl()
 const SAMPLE_RATE = 16000
 const CHUNK_SECONDS = 1.5
 const CHUNK_SAMPLES = Math.floor(SAMPLE_RATE * CHUNK_SECONDS)
